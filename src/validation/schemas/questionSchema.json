@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "properties": {
+        "category": {
+            "type": "string"
+        },
+        "question": {
+            "type": "string"
+        },
+        "correct_answer": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "category",
+        "question",
+        "correct_answer"
+    ]
+}

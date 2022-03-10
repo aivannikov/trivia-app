@@ -1,0 +1,5 @@
+{
+    "SERVER_URL": "https://opentdb.com",
+    "QUIZ_API_PATH": "/api.php",
+    "QUIZ_QUERY_STRING": "amount=10&difficulty=hard&type=boolean"
+}
