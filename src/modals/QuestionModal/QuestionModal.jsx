@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Header, Icon, Loader, Modal, Label, Dimmer, Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-const QuestionModal = (props) => {
+const QuestionModal = ( props ) => {
     const [open, setOpen] = useState(false);
 
     const handleButtonClick = (value) => {

@@ -48,9 +48,17 @@ const QuizContainer = () => {
 
     // useEffect hooks
     useEffect(() => {
-        if (shouldDataLoad)
-            axios.get(QUIZ_API_URL).then(
-                response => {
+        (
+            async () => {
+                if (shouldDataLoad) {
+                    let response;
+                    try {
+                        response = await axios.get(QUIZ_API_URL);
+                    }
+                    catch (error) {
+                        setErrorState({ isErrorOccured: true, msg: errorMessages.ajaxErrorMsg });
+                        logAjaxError(error);
+                    }
                     if (isValidQuestionsArray(response.data.results)) {
                         const responseApiData = [];
                         response.data.results.forEach(item => {
@@ -62,11 +70,28 @@ const QuizContainer = () => {
                     else {
                         setErrorState({ isErrorOccured: true, msg: errorMessages.parseResponse });
                     }
-                })
-                .catch((error) => {
-                    setErrorState({ isErrorOccured: true, msg: errorMessages.ajaxErrorMsg });
-                    logAjaxError(error);
-                });
+                }
+            }
+        )();
+        // if (shouldDataLoad)
+        //     axios.get(QUIZ_API_URL).then(
+        //         response => {
+        //             if (isValidQuestionsArray(response.data.results)) {
+        //                 const responseApiData = [];
+        //                 response.data.results.forEach(item => {
+        //                     responseApiData.push(mapResponseToState(item))
+        //                 });
+        //                 setQuizData(responseApiData);
+        //                 setShouldDataLoad(false);
+        //             }
+        //             else {
+        //                 setErrorState({ isErrorOccured: true, msg: errorMessages.parseResponse });
+        //             }
+        //         })
+        //         .catch((error) => {
+        //             setErrorState({ isErrorOccured: true, msg: errorMessages.ajaxErrorMsg });
+        //             logAjaxError(error);
+        //         });
     }, [shouldDataLoad]);
 
 
